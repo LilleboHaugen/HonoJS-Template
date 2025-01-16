@@ -1,0 +1,33 @@
+{
+  "name": "honojs-template",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "dev": "bun --hot run ./src/index.ts",
+    "type-check": "tsc --noEmit",
+    "format": "prettier --write . --ignore-unknown",
+    "lint": "eslint . --",
+    "format:lint": "bun run type-check && bun run format && bun run lint",
+    "ci-check": "bun run format && bun run lint && bun run type-check",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.18.0",
+    "@types/bun": "latest",
+    "eslint": "^9.18.0",
+    "eslint-config-prettier": "^10.0.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.4.1",
+    "prettier": "^3.4.2",
+    "tsc-files": "^1.1.4",
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.20.0"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": "bunx tsc-files --noEmit",
+    "*.{ts,tsx,js,json,md}": [
+      "bun run format",
+      "bun run lint --"
+    ]
+  }
+}
