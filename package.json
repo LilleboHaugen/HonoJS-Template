@@ -6,7 +6,7 @@
     "dev": "bun --hot run ./src/index.ts",
     "type-check": "tsc --noEmit",
     "format": "prettier --write . --ignore-unknown",
-    "lint": "eslint . --",
+    "lint": "eslint .",
     "format:lint": "bun run type-check && bun run format && bun run lint",
     "ci-check": "bun run format && bun run lint && bun run type-check",
     "prepare": "husky"
@@ -25,9 +25,6 @@
   },
   "lint-staged": {
     "*.{ts,tsx}": "bunx tsc-files --noEmit",
-    "*.{ts,tsx,js,json,md}": [
-      "bun run format",
-      "bun run lint --"
-    ]
+    "*.{ts,tsx,js,json,md}": "bun run format && bun run lint"
   }
 }
