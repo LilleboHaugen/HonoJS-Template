@@ -9,7 +9,9 @@
     "lint": "eslint .",
     "format:lint": "bun run type-check && bun run format && bun run lint",
     "ci-check": "bun run format && bun run lint && bun run type-check",
-    "prepare": "husky"
+    "prepare": "husky",
+    "build": "bun build ./src/index.ts --outdir ./dist",
+    "start": "bun run ./dist/index.js"
   },
   "devDependencies": {
     "@eslint/js": "^9.18.0",
@@ -24,7 +26,10 @@
     "typescript-eslint": "^8.20.0"
   },
   "lint-staged": {
-    "*.{ts,tsx}": "bunx tsc-files --noEmit",
-    "*.{ts,tsx,js,json,md}": "bun run format && bun run lint"
+    "*.{js,jsx,ts,tsx}": "bunx tsc-files --noEmit",
+    "*.{js,jsx,ts,tsx,js,json,md}": "bun run format && bun run lint"
+  },
+  "dependencies": {
+    "hono": "^4.6.17"
   }
 }

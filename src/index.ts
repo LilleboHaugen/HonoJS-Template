@@ -1,14 +1,23 @@
-console.log("Hello via Bun!")
+import { Hono } from "hono"
+import exampleRoutes from "./routes/exampleRute"
 
-let test = "Hello"
+const app = new Hono()
 
-test = "Hei"
+app.get("/", (c) => {
+  return c.json({
+    status: 200,
+    message: "Hello Hono!",
+  })
+})
 
-console.log(test)
+app.notFound((c) => {
+  return c.json({
+    status: 404,
+    message: "Not found",
+    path: c.req.path,
+  })
+})
 
-const testFunction = (name: string) => {
-  console.log(name)
-  return name
-}
+app.route("/example", exampleRoutes)
 
-testFunction("Jonas")
+export default app
