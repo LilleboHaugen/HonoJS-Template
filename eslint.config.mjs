@@ -1,12 +1,14 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import eslint from "@eslint/js"
 import tseslint from "typescript-eslint"
-import eslintConfigPrettier from "eslint-config-prettier"
+import prettierConfig from "eslint-config-prettier"
 
 export default tseslint.config(
   eslint.configs.recommended,
   tseslint.configs.strictTypeChecked,
   tseslint.configs.stylisticTypeChecked,
+  {
+    ignores: ["eslint.config.mjs"],
+  },
   {
     languageOptions: {
       parserOptions: {
@@ -15,8 +17,8 @@ export default tseslint.config(
       },
     },
     rules: {
-      "@typescript-eslint/no-unsafe-assignment": "error", // ✅ This only works if TypeScript parser is used
+      "@typescript-eslint/no-empty-object-type": "off",
     },
   },
-  eslintConfigPrettier,
+  prettierConfig,
 )
